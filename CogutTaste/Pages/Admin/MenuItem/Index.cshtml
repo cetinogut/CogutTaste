@@ -1,0 +1,48 @@
+﻿@page
+@using CogutTaste.Utility
+@{
+    ViewData["Title"] = " Menu Item Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<!--
+bu index saydasını pagemodelsiz olarak ürettiğimizden index.cshtml.cs dosyası yok..
+    neden bu dosyaya igtiyaç duymuyoruz.. çünkü index içindeki get methodları model kullanmadan sadece
+    javascript ile listeleri getiriyor..
+-->
+
+
+@if (User.IsInRole(StaticValues.ManagerRole))
+{
+    <div class="border backgroundWhite container">
+        <div class="row">
+            <div class="col-6">
+                <h2 class="text-primary">Menu Item List</h2>
+            </div>
+            <div class="col-6 text-right">
+                <a asp-page="Upsert" class="btn btn-primary"><i class="fas fa-plus"></i> &nbsp; Create New</a>
+            </div>
+        </div>
+        <br /><br />
+        <table id="DT_load" class="table table-striped table-bordered" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                    <th>Food Type</th>
+                    <th></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+}
+else
+{
+    <div>
+        <h1 class="text-danger"> Access Denied</h1>
+    </div>
+}
+@section Scripts{
+    <script src="~/js/menuItem.js"></script>
+}
